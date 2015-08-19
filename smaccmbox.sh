@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./demo.sh /dev/ttyUSB0 4000
+./demo.sh /dev/ttySMACCMbox 4000

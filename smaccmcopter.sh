@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./demo.sh /dev/ttyUSB1 6000
+./demo.sh /dev/tty3DR 6000
