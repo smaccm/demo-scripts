@@ -2,21 +2,28 @@
 
 set -x
 
-USB_PORT=${1-/dev/ttyUSB0}
-UDP_PORT=${2-4000}
+USB_PORT=/dev/ttyUSB0
+UDP_PORT=5000
 
-gnome-terminal -t GCS --working-directory=smaccmpilot-build/smaccmpilot-stm32f4/src/smaccm-comm-client -x bash -c "./gcs.sh $USB_PORT 57600 --verbose"
+gnome-terminal -t GCS --working-directory=smaccmpilot-build/smaccmpilot-stm32f4/src/smaccm-comm-client
 gnome-terminal -t CAMERA --working-directory=camera_demo -x java -jar SmaccmViewer.jar $UDP_PORT
 firefox localhost:8080/hud.html &
+gnome-terminal -t SSH -x ssh root@smaccmbox
 
 sleep 3
+
+# Move ssh terminal to workspace 2
+xdotool search SSH windowactivate key Ctrl+Alt+Shift+Right
+sleep 1
 
 # Move camera terminal to workspace 3
 xdotool search CAMERA windowactivate key Ctrl+Alt+Shift+Down
 sleep 1
 
-# Move GCS terminal to workspace 2
+# Move GCS terminal to workspace 4
 xdotool search GCS windowactivate key Ctrl+Alt+Shift+Right
+sleep 1
+xdotool search GCS windowactivate key Ctrl+Alt+Shift+Down
 sleep 1
 
 # Resize video to bottom corner, always on top
