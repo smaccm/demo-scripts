@@ -12,8 +12,10 @@ gnome-terminal -t SSH -x ssh root@smaccmbox
 
 sleep 3
 
-# Move ssh terminal to workspace 2
+# Move ssh terminal to workspace 2, fullscreen
 xdotool search SSH windowactivate key Ctrl+Alt+Shift+Right
+sleep 1
+wmctrl -r SSH -b toggle,maximized_vert,maximized_horz
 sleep 1
 
 # Move camera terminal to workspace 3
@@ -21,10 +23,12 @@ xdotool search CAMERA windowactivate key Ctrl+Alt+Shift+Down
 sleep 1
 
 # Move GCS terminal to workspace 4
-xdotool search GCS windowactivate key Ctrl+Alt+Shift+Right
+xdotool search smaccm-comm-client windowactivate key Ctrl+Alt+Shift+Right
 sleep 1
-xdotool search GCS windowactivate key Ctrl+Alt+Shift+Down
+xdotool search smaccm-comm-client windowactivate key Ctrl+Alt+Shift+Down
 sleep 1
+# Some initial typing gets cut off so we add Returns
+xdotool search smaccm-comm-client windowactivate key Return key Return key Return key Return key Return key Ctrl+L type "./gcs.sh /dev/ttySMACCMbox 57600 --verbose"
 
 # Resize video to bottom corner, always on top
 xdotool search SMACCMcopter windowactivate key Ctrl+Alt+89
@@ -33,4 +37,4 @@ sleep 1
 
 # Clear Ubuntu workspace manager
 xdotool key Ctrl+Alt+Left
-xdotool key Ctrl+Alt+Up
+xdotool key Ctrl+Alt+Right
