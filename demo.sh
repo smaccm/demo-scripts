@@ -16,23 +16,25 @@ gnome-terminal -t CAMERA --working-directory=camera_demo -x java -jar SmaccmView
 # Open Firefox for HUD
 firefox localhost:8080/hud.html &
 
-sleep 5
+sleep 10
 
 # Move camera terminal to workspace 3
 xdotool search CAMERA windowactivate key Ctrl+Alt+Shift+Down
-sleep 1
+sleep 3
 
 # Move GCS terminal to workspace 2
 xdotool search GCS windowactivate key Ctrl+Alt+Shift+Right
-sleep 1
+sleep 3
 
 # Resize video to bottom corner, always on top
 xdotool search SMACCMcopter windowactivate key Ctrl+Alt+89
+sleep 3
 wmctrl -r SMACCMcopter -b add,above
-sleep 1
+sleep 3
 
 # Clear Ubuntu workspace manager
 xdotool key Ctrl+Alt+Left
+sleep 3
 xdotool key Ctrl+Alt+Up
 
 # Refresh Firefox
